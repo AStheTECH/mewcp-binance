@@ -10389,7 +10389,8 @@
               }
             ],
             "notes": [
-              "Only for composite index symbols."
+              "Only for composite index symbols.",
+              "Returns an array of indexes when symbol is omitted and a single object when symbol is given."
             ],
             "schema": {
               "data": "UsdmCompositeIndexInfoData",
@@ -10849,27 +10850,27 @@
             ],
             "response_fields": [
               {
-                "name": "symbol",
+                "name": "[].symbol",
                 "type": "str",
                 "description": "Symbol"
               },
               {
-                "name": "longShortRatio",
+                "name": "[].longShortRatio",
                 "type": "str",
                 "description": "long/short account num ratio of all traders"
               },
               {
-                "name": "longAccount",
+                "name": "[].longAccount",
                 "type": "str",
                 "description": "long account num ratio of all traders"
               },
               {
-                "name": "shortAccount",
+                "name": "[].shortAccount",
                 "type": "str",
                 "description": "short account num ratio of all traders"
               },
               {
-                "name": "timestamp",
+                "name": "[].timestamp",
                 "type": "int",
                 "description": "End time of the period, in milliseconds"
               }
@@ -11274,27 +11275,27 @@
             ],
             "response_fields": [
               {
-                "name": "symbol",
+                "name": "[].symbol",
                 "type": "str",
                 "description": "Symbol"
               },
               {
-                "name": "longShortRatio",
+                "name": "[].longShortRatio",
                 "type": "str",
                 "description": "long/short account num ratio of top traders"
               },
               {
-                "name": "longAccount",
+                "name": "[].longAccount",
                 "type": "str",
                 "description": "long account num ratio of top traders"
               },
               {
-                "name": "shortAccount",
+                "name": "[].shortAccount",
                 "type": "str",
                 "description": "short account num ratio of top traders"
               },
               {
-                "name": "timestamp",
+                "name": "[].timestamp",
                 "type": "int",
                 "description": "End time of the period, in milliseconds"
               }
@@ -11365,27 +11366,27 @@
             ],
             "response_fields": [
               {
-                "name": "symbol",
+                "name": "[].symbol",
                 "type": "str",
                 "description": "Symbol"
               },
               {
-                "name": "longShortRatio",
+                "name": "[].longShortRatio",
                 "type": "str",
                 "description": "long/short position ratio of top traders"
               },
               {
-                "name": "longAccount",
+                "name": "[].longAccount",
                 "type": "str",
                 "description": "long positions ratio of top traders"
               },
               {
-                "name": "shortAccount",
+                "name": "[].shortAccount",
                 "type": "str",
                 "description": "short positions ratio of top traders"
               },
               {
-                "name": "timestamp",
+                "name": "[].timestamp",
                 "type": "int",
                 "description": "End time of the period, in milliseconds"
               }
