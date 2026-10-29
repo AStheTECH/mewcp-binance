@@ -261,8 +261,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT."),
         period: str = Field(description="Statistics period. One of 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d."),
         limit: int = Field(default=30, description="Number of records to return (default 30, maximum 500)."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
     ) -> UsdmLongShortRatioResult:
         tlog = ToolLogger(logger, "get_usdm_long_short_ratio")
         if not symbol.strip():
@@ -446,8 +446,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT."),
         period: str = Field(description="Statistics period. One of 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d."),
         limit: int = Field(default=30, description="Number of records to return (default 30, maximum 500)."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
     ) -> UsdmTopTraderAccountRatioResult:
         tlog = ToolLogger(logger, "get_usdm_top_trader_account_ratio")
         if not symbol.strip():
@@ -480,8 +480,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT."),
         period: str = Field(description="Statistics period. One of 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d."),
         limit: int = Field(default=30, description="Number of records to return (default 30, maximum 500)."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
     ) -> UsdmTopTraderPositionRatioResult:
         tlog = ToolLogger(logger, "get_usdm_top_trader_position_ratio")
         if not symbol.strip():
@@ -533,9 +533,9 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
     )
     def list_usdm_agg_trades(
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT."),
-        from_id: int | None = Field(default=None, description="Aggregate trade ID to start from, inclusive."),
-        start_time: int | None = Field(default=None, description="Start timestamp in milliseconds, inclusive."),
-        end_time: int | None = Field(default=None, description="End timestamp in milliseconds, inclusive."),
+        from_id: int | None = Field(default=None, description="Aggregate trade ID to start from, inclusive. Omit to send no from-ID filter."),
+        start_time: int | None = Field(default=None, description="Start timestamp in milliseconds since epoch, inclusive. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End timestamp in milliseconds since epoch, inclusive. Omit to send no end-time filter."),
         limit: int = Field(default=500, description="Number of trades to return (default 500, maximum 1000)."),
     ) -> UsdmAggTradesListResult:
         tlog = ToolLogger(logger, "list_usdm_agg_trades")
@@ -565,8 +565,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         contract_type: str = Field(description="Contract type. One of PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER."),
         period: str = Field(description="Statistics period. One of 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d."),
         limit: int = Field(default=30, description="Number of records to return (default 30, maximum 500)."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
     ) -> UsdmBasisListResult:
         tlog = ToolLogger(logger, "list_usdm_basis")
         if not pair.strip():
@@ -605,8 +605,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         pair: str = Field(description="Pair, e.g. BTCUSDT. Accepts both UM and CM pair values."),
         contract_type: str = Field(description="Contract type. One of PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER, TRADIFI_PERPETUAL."),
         interval: str = Field(description="Kline interval. One of 1s, 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
         limit: int = Field(default=500, description="Number of bars to return (default 500, maximum 1500)."),
     ) -> UsdmContinuousKlinesListResult:
         tlog = ToolLogger(logger, "list_usdm_continuous_klines")
@@ -663,9 +663,9 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=True),
     )
     def list_usdm_funding_rate_history(
-        symbol: str | None = Field(default=None, description="Trading pair symbol, e.g. BTCUSDT."),
-        start_time: int | None = Field(default=None, description="Start timestamp in milliseconds, inclusive."),
-        end_time: int | None = Field(default=None, description="End timestamp in milliseconds, inclusive."),
+        symbol: str | None = Field(default=None, description="Trading pair symbol, e.g. BTCUSDT. Omit to send no symbol filter."),
+        start_time: int | None = Field(default=None, description="Start timestamp in milliseconds since epoch, inclusive. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End timestamp in milliseconds since epoch, inclusive. Omit to send no end-time filter."),
         limit: int = Field(default=100, description="Number of records to return (default 100, maximum 1000)."),
     ) -> UsdmFundingRateHistoryListResult:
         tlog = ToolLogger(logger, "list_usdm_funding_rate_history")
@@ -720,8 +720,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
     def list_usdm_index_price_klines(
         pair: str = Field(description="Pair, e.g. BTCUSDT. Accepts both UM and CM pair values."),
         interval: str = Field(description="Kline interval. One of 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
         limit: int = Field(default=500, description="Number of bars to return (default 500, maximum 1500)."),
     ) -> UsdmIndexPriceKlinesListResult:
         tlog = ToolLogger(logger, "list_usdm_index_price_klines")
@@ -756,8 +756,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
     def list_usdm_klines(
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT. Accepts both UM and CM symbols."),
         interval: str = Field(description="Kline interval. One of 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
         limit: int = Field(default=500, description="Number of bars to return (default 500, maximum 1500)."),
     ) -> UsdmKlinesListResult:
         tlog = ToolLogger(logger, "list_usdm_klines")
@@ -791,8 +791,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
     def list_usdm_mark_price_klines(
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT. Accepts both UM and CM symbols."),
         interval: str = Field(description="Kline interval. One of 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
         limit: int = Field(default=500, description="Number of bars to return (default 500, maximum 1500)."),
     ) -> UsdmMarkPriceKlinesListResult:
         tlog = ToolLogger(logger, "list_usdm_mark_price_klines")
@@ -827,8 +827,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT."),
         period: str = Field(description="Statistics period. One of 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d."),
         limit: int = Field(default=30, description="Number of records to return (default 30, maximum 500)."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
     ) -> UsdmOpenInterestStatsListResult:
         tlog = ToolLogger(logger, "list_usdm_open_interest_stats")
         if not symbol.strip():
@@ -861,8 +861,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
     def list_usdm_premium_index_klines(
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT. Accepts both UM and CM symbols."),
         interval: str = Field(description="Kline interval. One of 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
         limit: int = Field(default=500, description="Number of bars to return (default 500, maximum 1500)."),
     ) -> UsdmPremiumIndexKlinesListResult:
         tlog = ToolLogger(logger, "list_usdm_premium_index_klines")
@@ -920,8 +920,8 @@ def register_usdm_market_tools(mcp: FastMCP) -> None:
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT."),
         period: str = Field(description="Statistics period. One of 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d."),
         limit: int = Field(default=30, description="Number of records to return (default 30, maximum 500)."),
-        start_time: int | None = Field(default=None, description="Start time in milliseconds."),
-        end_time: int | None = Field(default=None, description="End time in milliseconds."),
+        start_time: int | None = Field(default=None, description="Start time in milliseconds since epoch. Omit to send no start-time filter."),
+        end_time: int | None = Field(default=None, description="End time in milliseconds since epoch. Omit to send no end-time filter."),
     ) -> UsdmTakerBuySellVolumeListResult:
         tlog = ToolLogger(logger, "list_usdm_taker_buy_sell_volume")
         if not symbol.strip():
