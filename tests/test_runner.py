@@ -6,7 +6,7 @@ import pytest
 from binance_common import errors as E
 from pydantic import BaseModel, Field
 
-from binance_mcp import credentials, runner, service
+from binance_mcp import runner, service
 from binance_mcp.runner import BinanceCallError
 
 PEM = "-----BEGIN PRIVATE KEY-----\nSECRETKEYBODY123\n-----END PRIVATE KEY-----"
@@ -415,24 +415,3 @@ def test_service_credential_checks(sdk, monkeypatch):
     r = sdk.rest_apis[-1]
     assert r.config.private_key == PEM and r.config.private_key_passphrase == PASS
     assert r.config.api_secret is None
-
-
-# Credential backend
-
-def test_optional_static_backend():
-    from fastmcp_credentials import MissingCredentialHeaderError, ResolvedCredential
-
-    b = credentials.OptionalStaticBackend()
-
-    async def missing(_):
-        raise MissingCredentialHeaderError(["X-MCP-Cred-Fields"])
-
-    b._headers.resolve = missing
-    cred = asyncio.run(b.resolve("static"))
-    assert cred.type == "static" and cred.fields == {}
-
-    async def found(_):
-        return ResolvedCredential(type="static", fields={"api_key": "k"})
-
-    b._headers.resolve = found
-    assert asyncio.run(b.resolve("static")).fields == {"api_key": "k"}

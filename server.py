@@ -4,13 +4,12 @@
 import logging
 
 from fastmcp import FastMCP
-from fastmcp_credentials import CredentialMiddleware
+from fastmcp_credentials import CredentialMiddleware, HeaderCredentialBackend
 from starlette.responses import JSONResponse
 
 from binance_mcp import runner
 from binance_mcp.cli import parse_args
 from binance_mcp.config import BREAKING_CHANGES, SERVER_VERSION, configure_logging
-from binance_mcp.credentials import OptionalStaticBackend
 from binance_mcp.tools import register_tools
 
 configure_logging()
@@ -21,8 +20,9 @@ try:
 except Exception as e:
     logger.error("Public client warm-up failed: %s", type(e).__name__)
 
+backend = HeaderCredentialBackend()
 mcp = FastMCP("MewCP Binance MCP Server", version=SERVER_VERSION,
-              middleware=[CredentialMiddleware(OptionalStaticBackend(), "static")])
+              middleware=[CredentialMiddleware(backend, "static")])
 
 register_tools(mcp)
 
