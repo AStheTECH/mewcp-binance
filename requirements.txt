@@ -1,5 +1,9 @@
+# Python >=3.10 required (Binance SDKs)
 fastmcp
-httpx>=0.27.0
-pydantic>=2.0.0
-typing-extensions>=4.0.0
-python-dotenv>=1.0.0
+fastmcp-credentials>=0.2.0,<0.3.0
+pydantic>=2.12
+python-json-logger>=2.0.0
+binance-sdk-spot==13.4.0
+binance-sdk-derivatives-trading-usds-futures==18.2.0
+binance-sdk-derivatives-trading-coin-futures==14.2.0
+binance-common==4.8.0
