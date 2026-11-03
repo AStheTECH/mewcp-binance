@@ -2,6 +2,7 @@
 
 import logging
 import math
+import re
 import threading
 import time
 from typing import Any
@@ -189,10 +190,28 @@ def _close_session(client: Any) -> None:
         logger.debug("session close failed")
 
 
+_PEM_RE = re.compile(r"(-----BEGIN [A-Z ]+-----)(.*?)(-----END [A-Z ]+-----)", re.DOTALL)
+
+
+def _normalize_pem(text: str) -> str:
+    text = text.strip().strip("\"'").strip()
+    text = text.replace("\\r\\n", "\n").replace("\\n", "\n").replace("\r\n", "\n")
+    match = _PEM_RE.search(text)
+    if not match or "Proc-Type" in text:
+        return text
+    head, body, foot = match.groups()
+    body = "".join(body.split())
+    lines = [body[i:i + 64] for i in range(0, len(body), 64)]
+    return "\n".join([head, *lines, foot])
+
+
 def _check_private_key(private_key: str | None) -> str:
-    if not isinstance(private_key, str) or not private_key.strip().startswith("-----BEGIN"):
+    if not isinstance(private_key, str):
         raise ValueError("private_key must be PEM text beginning with -----BEGIN")
-    return private_key.strip()
+    pem = _normalize_pem(private_key)
+    if not pem.startswith("-----BEGIN"):
+        raise ValueError("private_key must be PEM text beginning with -----BEGIN")
+    return pem
 
 
 # Result conversion
