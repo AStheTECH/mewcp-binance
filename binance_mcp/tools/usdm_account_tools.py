@@ -523,7 +523,7 @@ def register_usdm_account_tools(mcp: FastMCP) -> None:
             d = service.call("usdm", "/fapi/v1/leverageBracket", "USER_DATA", "notional_and_leverage_brackets",
                              symbol=symbol, recv_window=recv_window)
             tlog.success()
-            out = UsdmLeverageBracketsListData(count=len(d), items=d) if isinstance(d, list) else UsdmLeverageBracketsListData(**d)
+            out = UsdmLeverageBracketsListData(count=len(d), items=d)
             return UsdmLeverageBracketsListResult(success=True, statusCode=200, data=out)
         except Exception as exc:
             return _handle_request_exc(UsdmLeverageBracketsListResult, tlog, exc)

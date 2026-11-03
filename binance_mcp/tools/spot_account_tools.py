@@ -564,10 +564,10 @@ def register_spot_account_tools(mcp: FastMCP) -> None:
     def list_spot_prevented_matches(
         symbol: str = Field(description="Trading pair symbol, e.g. BTCUSDT."),
         prevented_match_id: int | None = Field(
-            default=None, description="Prevented match ID to look up. Optional.",
+            default=None, description="Prevented match ID to look up. Optional, but prevented_match_id or order_id must be provided.",
         ),
         order_id: int | None = Field(
-            default=None, description="Order ID to list prevented matches for. Optional.",
+            default=None, description="Order ID to list prevented matches for. Optional, but prevented_match_id or order_id must be provided.",
         ),
         from_prevented_match_id: int | None = Field(
             default=None,

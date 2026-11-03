@@ -254,9 +254,6 @@ class UsdmLeverageBracketsItem(_Model):
 class UsdmLeverageBracketsListData(_Model):
     count: int | None = None
     items: list[UsdmLeverageBracketsItem] | None = None
-    symbol: str | None = None
-    notionalCoef: float | None = Field(default=None, description="User symbol bracket multiplier, only present when the user's symbol bracket is adjusted.")
-    brackets: list[UsdmLeverageBracket] | None = None
 
 
 class UsdmLeverageBracketsListResult(ToolResult):

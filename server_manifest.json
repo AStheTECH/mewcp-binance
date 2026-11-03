@@ -5632,13 +5632,13 @@
                 "name": "prevented_match_id",
                 "type": "int",
                 "required": false,
-                "description": "Prevented match ID."
+                "description": "Prevented match ID. Optional, but prevented_match_id or order_id must be provided."
               },
               {
                 "name": "order_id",
                 "type": "int",
                 "required": false,
-                "description": "Order ID."
+                "description": "Order ID. Optional, but prevented_match_id or order_id must be provided."
               },
               {
                 "name": "from_prevented_match_id",
@@ -9286,7 +9286,7 @@
                 "description": "Auxiliary number for quick calculation"
               }
             ],
-            "response_notes": "Documented as oneOf: an array of per-symbol objects, or a single per-symbol object (same fields without the [] prefix) when a symbol is sent.",
+            "response_notes": "Binance's schema is oneOf (array, or single object when a symbol is sent), but live calls always return an array, including with symbol. Modelled as an array root.",
             "notes": [],
             "schema": {
               "data": "UsdmLeverageBracketsListData",
